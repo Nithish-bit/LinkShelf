@@ -9,8 +9,8 @@ function App() {
     tags: "",
     description: "",
   });
+  const [editingId, setEditingId] = useState(null);
 
-  // Fetch all links
   const fetchLinks = async () => {
     const res = await axios.get("http://localhost:5000/api/links");
     setLinks(res.data);
@@ -20,29 +20,53 @@ function App() {
     fetchLinks();
   }, []);
 
-  // Handle input changes
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!form.title || !form.url) {
       alert("Title and URL are required!");
       return;
     }
 
-    await axios.post("http://localhost:5000/api/links", form);
+    if (editingId) {
+      // update
+      await axios.put(`http://localhost:5000/api/links/${editingId}`, form);
+      setEditingId(null);
+    } else {
+      // create
+      await axios.post("http://localhost:5000/api/links", form);
+    }
+
     setForm({ title: "", url: "", tags: "", description: "" });
-    fetchLinks(); // refresh list
+    fetchLinks();
+  };
+
+  const handleEdit = (link) => {
+    setForm({
+      title: link.title,
+      url: link.url,
+      tags: link.tags || "",
+      description: link.description || "",
+    });
+    setEditingId(link.id);
+  };
+
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this link?")) {
+      await axios.delete(`http://localhost:5000/api/links/${id}`);
+      fetchLinks();
+    }
   };
 
   return (
     <div style={{ padding: "2rem", fontFamily: "Arial" }}>
       <h1>📚 LinkShelf</h1>
 
-      {/* Add Link Form */}
+      {/* Add / Edit Form */}
       <form
         onSubmit={handleSubmit}
         style={{
@@ -67,7 +91,7 @@ function App() {
         />
         <input
           name="tags"
-          placeholder="Tags (comma separated)"
+          placeholder="Tags"
           value={form.tags}
           onChange={handleChange}
         />
@@ -78,22 +102,39 @@ function App() {
           onChange={handleChange}
         />
         <button type="submit" style={{ padding: "0.5rem", cursor: "pointer" }}>
-          ➕ Add Link
+          {editingId ? "💾 Save Changes" : "➕ Add Link"}
         </button>
       </form>
 
-      {/* Display links */}
+      {/* List of links */}
       {links.length === 0 ? (
-        <p>No links found.</p>
+        <p>No links yet.</p>
       ) : (
-        <ul>
+        <ul style={{ listStyle: "none", padding: 0 }}>
           {links.map((link) => (
-            <li key={link.id}>
+            <li
+              key={link.id}
+              style={{
+                border: "1px solid #ddd",
+                borderRadius: "8px",
+                padding: "10px",
+                marginBottom: "10px",
+              }}
+            >
               <a href={link.url} target="_blank" rel="noopener noreferrer">
-                {link.title}
+                <h3>{link.title}</h3>
               </a>
               <p>{link.description}</p>
               <small>{link.tags}</small>
+              <div style={{ marginTop: "0.5rem" }}>
+                <button onClick={() => handleEdit(link)}>✏️ Edit</button>
+                <button
+                  onClick={() => handleDelete(link.id)}
+                  style={{ marginLeft: "0.5rem" }}
+                >
+                  🗑️ Delete
+                </button>
+              </div>
             </li>
           ))}
         </ul>
