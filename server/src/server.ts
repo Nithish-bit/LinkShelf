@@ -1,71 +1,65 @@
 import express from "express";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
-import dotenv from "dotenv";
-
-dotenv.config({ path: "./prisma/.env" });
 
 const app = express();
 const prisma = new PrismaClient();
 
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000" }));
 app.use(express.json());
 
 // ✅ GET all links
 app.get("/api/links", async (req, res) => {
-  const links = await prisma.link.findMany();
-  res.json(links);
+  try {
+    const links = await prisma.link.findMany({ orderBy: { id: "desc" } });
+    res.json(links);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to load links" });
+  }
 });
 
 // ✅ POST new link
 app.post("/api/links", async (req, res) => {
   try {
     const { title, url, tags, description } = req.body;
-    if (!title || !url) {
+    if (!title || !url)
       return res.status(400).json({ error: "Title and URL are required" });
-    }
 
-    const newLink = await prisma.link.create({
+    const link = await prisma.link.create({
       data: { title, url, tags, description },
     });
-
-    res.json(newLink);
+    res.json(link);
   } catch (error) {
-    console.error("Error creating link:", error);
-    res.status(500).json({ error: "Internal server error" });
+    console.error(error);
+    res.status(500).json({ error: "Error creating link" });
   }
 });
-// 🗑️ DELETE a link
+
+// ✅ DELETE link
 app.delete("/api/links/:id", async (req, res) => {
   try {
-    const { id } = req.params;
-    await prisma.link.delete({
-      where: { id: Number(id) },
-    });
-    res.json({ message: "Link deleted successfully" });
+    await prisma.link.delete({ where: { id: Number(req.params.id) } });
+    res.json({ message: "Deleted" });
   } catch (error) {
-    console.error("Error deleting link:", error);
-    res.status(500).json({ error: "Internal server error" });
+    console.error(error);
+    res.status(500).json({ error: "Error deleting link" });
   }
 });
 
-// ✏️ UPDATE a link
+// ✅ PUT (update)
 app.put("/api/links/:id", async (req, res) => {
   try {
-    const { id } = req.params;
     const { title, url, tags, description } = req.body;
-
     const updated = await prisma.link.update({
-      where: { id: Number(id) },
+      where: { id: Number(req.params.id) },
       data: { title, url, tags, description },
     });
-
     res.json(updated);
   } catch (error) {
-    console.error("Error updating link:", error);
-    res.status(500).json({ error: "Internal server error" });
+    console.error(error);
+    res.status(500).json({ error: "Error updating link" });
   }
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));
+app.listen(5000, () => console.log("✅ Server running on port 5000"));
