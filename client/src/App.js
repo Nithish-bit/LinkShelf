@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import "./App.css";
-
+import TagFilter from "./components/TagFilter";
 import {
   Container,
   TextInput,
@@ -258,26 +258,21 @@ export default function App() {
       </div>
 
       {/* Search & Tags */}
-      <TextInput
-        placeholder="🔍 Search by title or tag..."
-        mt="lg"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+<div className="search-bar">
+  <TextInput
+    placeholder="🔍 Search by title or tag..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    radius="md"
+    size="md"
+  />
+</div>
 
-      <Group mt="md" gap="xs">
-        {allTags.map((tag) => (
-          <Badge
-            key={tag}
-            onClick={() => setTagFilter(tagFilter === tag ? null : tag)}
-            color={tagFilter === tag ? "indigo" : "violet"}
-            variant={tagFilter === tag ? "filled" : "light"}
-            style={{ cursor: "pointer" }}
-          >
-            #{tag}
-          </Badge>
-        ))}
-      </Group>
+<TagFilter
+  allTags={allTags}
+  tagFilter={tagFilter}
+  setTagFilter={setTagFilter}
+/>
 
       {/* Link Cards */}
       <div style={{ marginTop: "2rem" }}>
