@@ -1,0 +1,103 @@
+.tagfilter-container {
+  margin-top: 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 8px;
+  transition: background 0.3s ease;
+}
+
+[data-mantine-color-scheme='dark'] .tagfilter-container {
+  background: rgba(30, 84, 112, 0.25);
+}
+
+.tagfilter-scroll {
+  max-height: 120px;
+  padding: 5px;
+}
+
+.tagfilter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Badge default style */
+.tagfilter-badge {
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 6px 10px;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+  background: rgba(110, 193, 209, 0.25);
+  color: #1e5470;
+  white-space: nowrap;
+  border: 1px solid rgba(52, 114, 156, 0.2);
+}
+
+/* Light theme hover */
+.tagfilter-badge:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #6ec1d1, #34729c);
+  color: #e9f8ff;
+  border-color: rgba(52, 114, 156, 0.4);
+  box-shadow: 0 2px 6px rgba(52, 114, 156, 0.3);
+}
+
+/* Dark theme hover */
+[data-mantine-color-scheme='dark'] .tagfilter-badge:hover {
+  background: linear-gradient(135deg, #1e5470, #6ec1d1);
+  color: #d8f3ff;
+}
+
+/* Active tag (selected) */
+.tagfilter-badge.active {
+  background: linear-gradient(135deg, #34729c, #1e5470);
+  color: #d8f3ff;
+  box-shadow: 0 0 10px rgba(52, 114, 156, 0.5);
+  border-color: rgba(52, 114, 156, 0.5);
+}
+/* 🔍 Search Bar Styling */
+.search-bar {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.search-bar input {
+  width: 100%;
+  height: 48px; /* slightly taller for better look */
+  font-size: 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(52, 114, 156, 0.3);
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(6px);
+  color: #1e5470;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Light mode hover / focus */
+.search-bar input:hover,
+.search-bar input:focus {
+  background: linear-gradient(135deg, rgba(110, 193, 209, 0.25), rgba(52, 114, 156, 0.15));
+  border-color: rgba(52, 114, 156, 0.5);
+  box-shadow: 0 0 8px rgba(52, 114, 156, 0.3);
+  outline: none;
+}
+
+/* Dark mode version */
+[data-mantine-color-scheme='dark'] .search-bar input {
+  background: rgba(30, 84, 112, 0.25);
+  color: #e0f7ff;
+  border: 1px solid rgba(110, 193, 209, 0.2);
+}
+
+[data-mantine-color-scheme='dark'] .search-bar input:hover,
+[data-mantine-color-scheme='dark'] .search-bar input:focus {
+  background: linear-gradient(135deg, rgba(30, 84, 112, 0.5), rgba(110, 193, 209, 0.3));
+  border-color: rgba(110, 193, 209, 0.4);
+  box-shadow: 0 0 10px rgba(110, 193, 209, 0.3);
+}
