@@ -1,3 +1,4 @@
+﻿// File: PaginationControls.js
 import { Group, Pagination, Text } from "@mantine/core";
 
 function PaginationControls({ page, totalItems, itemsPerPage, onChange }) {

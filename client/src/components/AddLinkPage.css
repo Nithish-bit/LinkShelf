@@ -1,3 +1,4 @@
+﻿/* File: AddLinkPage.css */
 .addlink-container {
   display: flex;
   align-items: center;
@@ -91,7 +92,7 @@
   box-shadow: 0 4px 12px rgba(52, 114, 156, 0.35);
 }
 
-/* 🎙 Audio Recording Button */
+/* ðŸŽ™ Audio Recording Button */
 .record-btn {
   transition: all 0.3s ease;
   font-weight: 500;
@@ -108,7 +109,7 @@
   transform: scale(1.06);
 }
 
-/* 🎧 Audio Preview */
+/* ðŸŽ§ Audio Preview */
 .audio-preview {
   margin-top: 15px;
   border-radius: 14px;
@@ -127,4 +128,99 @@ audio {
   width: 100%;
   border-radius: 12px;
   outline: none;
+}
+.addlink-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(145deg, #d6f1f5, #b8e0eb);
+  padding: 20px;
+}
+
+.addlink-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  padding: 25px 30px;
+  transition: 0.3s ease;
+}
+
+.addlink-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(52, 114, 156, 0.25);
+}
+
+.addlink-title {
+  font-weight: 600;
+  color: #1e5470;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Inputs */
+.addlink-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.addlink-form input,
+.addlink-form textarea {
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(52, 114, 156, 0.2);
+  padding: 10px 12px;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.addlink-form textarea {
+  min-height: 120px; /* ðŸ§© Bigger text box */
+  resize: vertical;
+}
+
+.addlink-form input:focus,
+.addlink-form textarea:focus {
+  border-color: rgba(52, 114, 156, 0.6);
+  box-shadow: 0 0 8px rgba(52, 114, 156, 0.3);
+}
+
+/* Button */
+.add-btn {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 12px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.add-btn:hover {
+  transform: scale(1.02);
+  background: linear-gradient(135deg, #6ec1d1, #34729c);
+}
+
+/* Audio section */
+audio {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 8px;
+}
+
+/* ðŸ“± Responsive */
+@media (max-width: 600px) {
+  .addlink-card {
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .add-btn {
+    font-size: 13px;
+  }
+
+  .addlink-form textarea {
+    min-height: 100px;
+  }
 }

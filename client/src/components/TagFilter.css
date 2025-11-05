@@ -1,4 +1,5 @@
-/* 🌿 Container styling */
+﻿/* File: TagFilter.css */
+/* ðŸŒ¿ Container styling */
 .tagfilter-container {
   margin-top: 10px;
   border-radius: 10px;
@@ -13,7 +14,7 @@
   background: rgba(30, 84, 112, 0.25);
 }
 
-/* 🌊 Smooth custom scroll look */
+/* ðŸŒŠ Smooth custom scroll look */
 .tagfilter-scroll {
   max-height: 120px;
   padding: 5px;
@@ -22,7 +23,7 @@
   scrollbar-color: rgba(100, 160, 200, 0.6) transparent;
 }
 
-/* 🎨 Chrome, Edge, Safari scrollbar */
+/* ðŸŽ¨ Chrome, Edge, Safari scrollbar */
 .tagfilter-scroll::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -47,14 +48,14 @@
   background: linear-gradient(180deg, #78d1e3, #3b7aa5);
 }
 
-/* 💠 Tag group layout */
+/* ðŸ’  Tag group layout */
 .tagfilter-group {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
 }
 
-/* 🏷️ Tag badges */
+/* ðŸ·ï¸ Tag badges */
 .tagfilter-badge {
   cursor: pointer;
   font-size: 0.85rem;

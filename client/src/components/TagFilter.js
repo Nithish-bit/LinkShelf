@@ -1,3 +1,4 @@
+﻿// File: TagFilter.js
 import { Badge, Group, ScrollArea } from "@mantine/core";
 import "./TagFilter.css";
 

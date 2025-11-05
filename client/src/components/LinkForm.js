@@ -1,3 +1,4 @@
+﻿// File: LinkForm.js
 import React, { useState, useRef } from "react";
 import {
   TextInput,
@@ -17,7 +18,7 @@ export default function LinkForm({ form, setForm, onSubmit, loading, editingId, 
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
 
-  // 🎙 Start recording
+  // ðŸŽ™ Start recording
   const startRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -49,7 +50,7 @@ export default function LinkForm({ form, setForm, onSubmit, loading, editingId, 
     }
   };
 
-  // 🛑 Stop recording
+  // ðŸ›‘ Stop recording
   const stopRecording = () => {
     mediaRecorderRef.current?.stop();
     setRecording(false);
@@ -100,7 +101,7 @@ export default function LinkForm({ form, setForm, onSubmit, loading, editingId, 
           </Grid.Col>
         </Grid>
 
-        {/* 🎙 Audio Recorder */}
+        {/* ðŸŽ™ Audio Recorder */}
         <Group justify="center" mt="md">
           <Tooltip label={recording ? "Stop Recording" : "Record Audio Note"}>
             <Button

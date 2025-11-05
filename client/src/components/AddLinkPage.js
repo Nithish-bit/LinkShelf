@@ -1,3 +1,4 @@
+﻿// File: AddLinkPage.js
 import { useState, useRef } from "react";
 import {
   TextInput,
@@ -22,14 +23,14 @@ export default function AddLinkPage({ onAdd }) {
     url: "",
     tags: "",
     description: "",
-    audioNote: null, // 🎙️ store audio note
+    audioNote: null, // ðŸŽ™ï¸ store audio note
   });
   const [recording, setRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);
   const mediaRecorderRef = useRef(null);
   const chunksRef = useRef([]);
 
-  // 🎤 Start recording
+  // ðŸŽ¤ Start recording
   const startRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -55,12 +56,12 @@ export default function AddLinkPage({ onAdd }) {
       recorder.start();
       setRecording(true);
     } catch (err) {
-      alert("🎤 Please allow microphone access to record audio.");
+      alert("ðŸŽ¤ Please allow microphone access to record audio.");
       console.error("Microphone permission error:", err);
     }
   };
 
-  // 🛑 Stop recording
+  // ðŸ›‘ Stop recording
   const stopRecording = () => {
     if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
       mediaRecorderRef.current.stop();
@@ -68,7 +69,7 @@ export default function AddLinkPage({ onAdd }) {
     }
   };
 
-  // ✅ Handle submit
+  // âœ… Handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
     if (onAdd) onAdd(form);
@@ -99,7 +100,7 @@ export default function AddLinkPage({ onAdd }) {
           transition={{ duration: 0.4 }}
         >
           <Title order={2} ta="center" className="addlink-title">
-            ✨ Add a New Link
+            âœ¨ Add a New Link
           </Title>
         </motion.div>
 
@@ -136,7 +137,7 @@ export default function AddLinkPage({ onAdd }) {
             }
           />
 
-          {/* 🎙 Audio Recorder */}
+          {/* ðŸŽ™ Audio Recorder */}
           <Group justify="center" mt="md">
             <Tooltip label={recording ? "Stop Recording" : "Record Audio Note"}>
               <Button
@@ -157,7 +158,7 @@ export default function AddLinkPage({ onAdd }) {
             </Tooltip>
           </Group>
 
-          {/* 🎧 Audio Preview */}
+          {/* ðŸŽ§ Audio Preview */}
           {audioBlob && (
             <motion.div
               className="audio-preview"

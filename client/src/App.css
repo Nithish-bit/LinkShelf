@@ -35,21 +35,34 @@ body {
   text-shadow: 0 1px 2px rgba(30, 84, 112, 0.15);
 }
 
-/* ===== Form Styling ===== */
+/* ===== Add Link Form ===== */
 .form-wrapper {
   background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(8px);
-  border-radius: 14px;
-  padding: 1.5rem;
-  box-shadow: 0 3px 16px rgba(52, 114, 156, 0.12);
-  transition: background 0.3s ease;
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 1.8rem;
+  box-shadow: 0 4px 18px rgba(52, 114, 156, 0.12);
+  transition: all 0.3s ease;
+}
+
+.form-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(52, 114, 156, 0.2);
 }
 
 .mantine-TextInput-input,
 .mantine-Textarea-input {
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid #d9e3ec;
+  background: rgba(255, 255, 255, 0.9);
   transition: all 0.25s ease;
+  font-size: 14px;
+  padding: 10px 12px;
+}
+
+.mantine-Textarea-input {
+  min-height: 120px;
+  resize: vertical;
 }
 
 .mantine-TextInput-input:focus,
@@ -60,9 +73,10 @@ body {
 
 /* ===== Buttons ===== */
 .mantine-Button-root {
-  border-radius: 8px !important;
+  border-radius: 12px !important;
   font-weight: 600 !important;
   transition: all 0.25s ease;
+  padding: 0.6rem 1.2rem;
 }
 
 .mantine-Button-root[data-color="indigo"] {
@@ -93,7 +107,7 @@ body {
 }
 .mantine-TextInput-input {
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 /* ===== Tag Badges ===== */
@@ -102,7 +116,8 @@ body {
   color: var(--color-primary-dark);
   border: 1px solid var(--color-primary-light);
   font-size: 0.75rem;
-  border-radius: 6px;
+  border-radius: 8px;
+  padding: 3px 8px;
   transition: all 0.2s ease;
   cursor: pointer;
 }
@@ -111,25 +126,36 @@ body {
   color: #fff;
 }
 
-/* ===== Link Cards ===== */
-.mantine-Card-root {
-  background: #ffffffc9;
-  border: 1px solid #e3edf3;
-  border-radius: 12px;
+/* ===== Compact Link Cards ===== */
+.link-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+  padding: 14px 18px;
+  margin-bottom: 14px;
   transition: all 0.25s ease;
-  box-shadow: 0 2px 6px rgba(30, 84, 112, 0.08);
-}
-.mantine-Card-root:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(30, 84, 112, 0.15);
 }
 
-.mantine-Text-root[c="indigo.7"] {
-  color: var(--color-primary);
-  transition: color 0.2s ease;
+.link-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(52, 114, 156, 0.25);
 }
-.mantine-Text-root[c="indigo.7"]:hover {
-  color: var(--color-primary-dark);
+
+.link-card .mantine-Text-root {
+  font-size: 14px;
+}
+
+.link-card audio {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 8px;
+}
+
+/* Compact Tag Badges */
+.link-card .mantine-Badge-root {
+  padding: 2px 7px;
+  font-size: 11px;
+  border-radius: 8px;
 }
 
 /* ===== Empty State ===== */
@@ -163,8 +189,8 @@ body {
   color: #e8f2f7;
 }
 
-[data-mantine-color-scheme="dark"] .mantine-Card-root {
-  background: rgba(30, 45, 60, 0.8);
+[data-mantine-color-scheme="dark"] .link-card {
+  background: rgba(30, 45, 60, 0.85);
   border-color: #2b3c50;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
@@ -175,25 +201,83 @@ body {
   color: var(--color-primary-light);
 }
 
-/* ===== Smooth Transitions ===== */
+/* ===== Transitions ===== */
 * {
   transition: background 0.2s ease, color 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* ===== Responsive ===== */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .mantine-Container-root {
     padding: 1rem;
   }
+
   .mantine-Title-root {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
-  .mantine-Button-root {
-    width: 100%;
+
+  .form-wrapper {
+    padding: 1.2rem;
   }
+
+  .mantine-Textarea-input {
+    min-height: 100px;
+  }
+
+  .link-card {
+    padding: 12px;
+  }
+
+  .link-card .mantine-Text-root {
+    font-size: 13px;
+  }
+
   .mantine-ActionIcon-root[size="xl"] {
     bottom: 16px !important;
     right: 16px !important;
   }
 }
+/* ===== Card Page Layout ===== */
+.card-page {
+  background: linear-gradient(145deg, #eef7fb, #d9edf5);
+  border-radius: 24px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 8px 30px rgba(52, 114, 156, 0.25);
+  backdrop-filter: blur(12px);
+  max-width: 480px;
+  margin: 2rem auto;
+}
 
+.card-page .mantine-Title-root {
+  color: var(--color-primary-dark);
+  font-size: 1.6rem;
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+/* Link cards in page */
+.card-page .link-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.card-page .link-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(52, 114, 156, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .card-page {
+    margin: 1rem;
+    padding: 1.2rem;
+    border-radius: 18px;
+  }
+
+  .card-page .link-card {
+    padding: 0.9rem 1rem;
+  }
+}

@@ -183,7 +183,8 @@ export default function App() {
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.25 }}
               >
-                <Card withBorder shadow="sm" mb="sm" radius="md">
+              <Card withBorder shadow="sm" mb="sm" radius="md" className="link-card">
+
                   <Group justify="space-between" align="flex-start">
                     <div>
                       <a
