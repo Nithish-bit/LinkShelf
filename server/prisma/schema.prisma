@@ -13,7 +13,9 @@ model Link {
   title       String
   url         String
   tags        String?
-  description String?    // optional new field for longer text
+  description String?
+  audioNote   String?
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 }
+
